@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encurtador de Links</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Encurtador de Links</h1>
+    <p>Transforme URLs longas em links curtos!</p>
+    
+    <form id="shortenForm" action="/" method="post">
+      <input type="url" id="longUrl" name="link_input" placeholder="Cole aqui a sua URL" required>
+      <button type="submit">Encurtar</button>
+    </form>
+
+    {% if link_curto %}
+      <div>
+        <h2>Seu link encurtado é:</h2>
+        <p><a href="{{ link_curto }}" target="_blank">{{ link_curto }}</a>
+        </p>
+        
+      </div>
+    {% endif %}
+
+    <!-- Exibe a mensagem de erro -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul class="error-messages">
+          {% for category, message in messages %}
+            <li>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+  </div>
+</body>
+</html>
